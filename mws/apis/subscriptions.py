@@ -34,7 +34,10 @@ class Subscriptions(MWS):
         http://docs.developer.amazonservices.com/en_US/subscriptions/Subscriptions_RegisterDestination.html
 
         delivery_channel: Currently only supports SQS
-        attribute_list: example [{"sqsQueueUrl" : "https://sqs.us-east-1.amazonaws.com/51471EXAMPLE/mws_notifications"}]
+        attribute_list: example [{
+         "Key": "sqsQueueUrl",
+         "Value":"https://sqs.eu-west-2.amazonaws.com/378051892504/Amazon_MWS_Notify"
+         }]]
 
         """
         if attribute_list is None:
