@@ -234,5 +234,4 @@ class Subscriptions(MWS):
                 "Subscription.IsEnabled": str(is_enabled).lower(),
                 "Subscription.NotificationType": notification_type}
         data.update(utils.enumerate_keyed_param("Destination.AttributeList.member", self._parse_attributes(attributes)))
-
         return self.make_request(data, "POST")
