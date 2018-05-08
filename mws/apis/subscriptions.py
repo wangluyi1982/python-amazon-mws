@@ -117,6 +117,7 @@ class Subscriptions(MWS):
 
         return self.make_request(data, method="POST")
 
+
     def create_subscription(self, marketplace_id, delivery_channel="SQS", attributes=None,
                             notification_type=None, is_enabled=True):
         """
@@ -129,8 +130,10 @@ class Subscriptions(MWS):
         attributes: example {"sqsQueueUrl": "https://sqs.eu-west-2.amazonaws.com/378051892504/Amazon_MWS_Notify"}
 
         """
+
         if attributes is None:
             raise ValueError("attributes cannot be None")
+
         if notification_type is None:
             raise ValueError("notification_type cannot be None")
         data = {"Action": "CreateSubscription",
@@ -138,6 +141,7 @@ class Subscriptions(MWS):
                 "Subscription.Destination.DeliveryChannel": delivery_channel,
                 "Subscription.IsEnabled": str(is_enabled).lower(),
                 "Subscription.NotificationType": notification_type}
+
         data.update(utils.enumerate_keyed_param("Destination.AttributeList.member", self._parse_attributes(attributes)))
 
         return self.make_request(data, "POST")
@@ -153,8 +157,10 @@ class Subscriptions(MWS):
         attributes: example {"sqsQueueUrl": "https://sqs.eu-west-2.amazonaws.com/378051892504/Amazon_MWS_Notify"}
 
         """
+
         if attributes is None:
             raise ValueError("attributes cannot be None")
+
         if notification_type is None:
             raise ValueError("notification_type cannot be None")
         data = {"Action": "GetSubscription",
@@ -166,6 +172,7 @@ class Subscriptions(MWS):
         return self.make_request(data, "POST")
 
     def delete_subscription(self, marketplace_id, delivery_channel="SQS", attributes=None, notification_type=None):
+
         """
         Deletes the subscription for the specified notification type and destination.
 
@@ -176,14 +183,17 @@ class Subscriptions(MWS):
         attributes: example {"sqsQueueUrl": "https://sqs.eu-west-2.amazonaws.com/378051892504/Amazon_MWS_Notify"}
 
         """
+
         if attributes is None:
             raise ValueError("attributes cannot be None")
+
         if notification_type is None:
             raise ValueError("notification_type cannot be None")
         data = {"Action": "DeleteSubscription",
                 "MarketplaceId": marketplace_id,
                 "Destination.DeliveryChannel": delivery_channel,
                 "NotificationType": notification_type}
+
         data.update(utils.enumerate_keyed_param("Destination.AttributeList.member", self._parse_attributes(attributes)))
 
         return self.make_request(data, "POST")
@@ -216,6 +226,7 @@ class Subscriptions(MWS):
         """
         if attributes is None:
             raise ValueError("attributes cannot be None")
+
         if notification_type is None:
             raise ValueError("notification_type cannot be None")
         data = {"Action": "UpdateSubscription",
@@ -224,5 +235,5 @@ class Subscriptions(MWS):
                 "Subscription.IsEnabled": str(is_enabled).lower(),
                 "Subscription.NotificationType": notification_type}
         data.update(utils.enumerate_keyed_param("Destination.AttributeList.member", self._parse_attributes(attributes)))
-
+        
         return self.make_request(data, "POST")
