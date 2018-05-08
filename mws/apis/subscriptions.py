@@ -139,7 +139,7 @@ class Subscriptions(MWS):
 
         return self.make_request(data, "POST")
 
-    def delete_subscription(self, marketplace_id, delivery_channel="SQS", attribute_list=None, _type=None):
+    def delete_subscription(self, marketplace_id, attribute_list=None, _type=None):
         """
         Deletes the subscription for the specified notification type and destination.
 
@@ -152,7 +152,6 @@ class Subscriptions(MWS):
             raise ValueError("_type cannot be None")
         data = {"Action": "DeleteSubscription",
                 "MarketplaceId": marketplace_id,
-                "Subscription.Destination.DeliveryChannel": delivery_channel,
                 "Subscription.NotificationType": _type}
         data.update(utils.enumerate_keyed_param("Subscription.Destination.AttributeList.member", attribute_list))
 
