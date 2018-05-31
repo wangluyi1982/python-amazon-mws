@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from setuptools import setup
+from setuptools import setup, find_packages
 
 short_description = 'Python library for interacting with the Amazon MWS API'
 
@@ -17,7 +17,7 @@ setup(
     url="http://github.com/jameshiew/mws",
     description=short_description,
     long_description=long_description,
-    packages=['mws'],
+    packages=find_packages()
     install_requires=[
         'requests',
     ],
