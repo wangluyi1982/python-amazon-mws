@@ -17,7 +17,7 @@ setup(
     url="http://github.com/jameshiew/mws",
     description=short_description,
     long_description=long_description,
-    packages=find_packages()
+    packages=find_packages(),
     install_requires=[
         'requests',
     ],
